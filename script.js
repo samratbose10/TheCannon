@@ -5,7 +5,9 @@ let cannonX = 375;
 const cannonSpeed = 10;
 
 let cannonballY = 0;
+let cannonballX = Math.random() * 780;
 const cannonballSpeed = 5;
+let cannonballDirection = (Math.random() > 0.5 ? 1 : -1) * Math.random() * 2;
 
 document.addEventListener('keydown', (event) => {
     if (event.key === 'ArrowLeft' && cannonX > 0) {
@@ -18,20 +20,30 @@ document.addEventListener('keydown', (event) => {
 
 function moveCannonball() {
     cannonballY += cannonballSpeed;
+    cannonballX += cannonballDirection;
+    
     if (cannonballY > 600) {
         cannonballY = 0;
-        cannonball.style.left = Math.random() * 780 + 'px';
+        cannonballX = Math.random() * 780;
+        cannonballDirection = (Math.random() > 0.5 ? 1 : -1) * Math.random() * 2;
     }
+    
+    if (cannonballX < 0 || cannonballX > 780) {
+        cannonballDirection *= -1;
+    }
+
     cannonball.style.top = cannonballY + 'px';
+    cannonball.style.left = cannonballX + 'px';
 
     if (
         cannonballY + 20 > 550 &&
-        cannonX < parseInt(cannonball.style.left) + 20 &&
-        cannonX + 50 > parseInt(cannonball.style.left)
+        cannonX < cannonballX + 20 &&
+        cannonX + 50 > cannonballX
     ) {
         alert('Game Over!');
         cannonballY = 0;
-        cannonball.style.left = Math.random() * 780 + 'px';
+        cannonballX = Math.random() * 780;
+        cannonballDirection = (Math.random() > 0.5 ? 1 : -1) * Math.random() * 2;
     }
 
     requestAnimationFrame(moveCannonball);
