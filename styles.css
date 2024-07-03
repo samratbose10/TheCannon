@@ -4,9 +4,10 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #333;
+    background: linear-gradient(to bottom, #cb9ddd, #2a5298);
     color: white;
     font-family: Arial, sans-serif;
+    overflow: hidden;
 }
 
 .game-container {
@@ -15,7 +16,28 @@ body {
     height: 600px;
     border: 2px solid #fff;
     overflow: hidden;
-    background-color: #444;
+    background: radial-gradient(circle, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+}
+
+#glowingText {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    color: #fff;
+    text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 15px #ff00ff, 0 0 20px #ff00ff, 0 0 25px #ff00ff, 0 0 30px #ff00ff, 0 0 35px #ff00ff;
+}
+
+#score {
+    position: absolute;
+    top: 40px;
+    left: 10px;
+    font-size: 20px;
+    font-weight: bold;
 }
 
 #cannon {
@@ -26,6 +48,14 @@ body {
     width: 50px;
     height: 50px;
     background-color: red;
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px rgba(255, 0, 0, 0.8);
+    animation: bounce 1s infinite alternate;
+}
+
+@keyframes bounce {
+    0% { transform: translateX(-50%) translateY(0); }
+    100% { transform: translateX(-50%) translateY(-10px); }
 }
 
 #cannonball {
@@ -37,6 +67,7 @@ body {
     height: 20px;
     background-color: yellow;
     border-radius: 50%;
+    box-shadow: 0px 0px 10px rgba(255, 255, 0, 0.8);
     animation: rotateScale 1s infinite linear;
 }
 
@@ -50,4 +81,32 @@ body {
     100% {
         transform: translateX(-50%) rotate(360deg) scale(1);
     }
+}
+
+#countdown {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 48px;
+    font-weight: bold;
+    display: none;
+}
+
+#startButton {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 24px;
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#startButton:hover {
+    background-color: #218838;
 }
